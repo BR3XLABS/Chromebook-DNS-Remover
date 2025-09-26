@@ -9,7 +9,8 @@
     <br>3. Copy all the text.
     <br>4. Paste it into the textbox below, and click Generate.
   <br>5. Go to chrome://network#general, scroll all the way to the bottom, and click import onc, import your file, and you're done!</p>
-  <button onclick="try {
+  <input placeholder="Paste copied text here">
+	<button onclick="try {
     var networks = document.querySelector("input").value;
     networks = networks.replace(/(?<=[+-]..){/g, "");
     networks = networks.replace(/(?<=})[^{\]}]*(?={.."C)/g, ",");
@@ -51,6 +52,6 @@
   } catch (error) {
     console.error(error);
     alert("An error occurred, check console logs");
-  }">Click Me</button>
+  }"Generate"</button>
   <p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
 </body>
