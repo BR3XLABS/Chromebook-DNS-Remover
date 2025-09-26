@@ -41,7 +41,7 @@
         },
 	NameServersConfigType: "Static",
 	StaticIPConfig: {
-	    NameServers: ["8.8.8.8", "8.8.4.4", "8.8.8.8", "8.8.4.4"]
+	    NameServers: ["1.1.1.1", "1.0.0.1", "1.1.1.1", "1.0.0.1"]
 	},
         ProxySettings:{
 	    Type:"Direct"
@@ -52,7 +52,7 @@
     if (!onc.NetworkConfigurations[0]) return;
     var link = document.createElement("a");
     link.href = URL.createObjectURL(new Blob([JSON.stringify(onc)]));
-    link.download = "blobwifi.onc";
+    link.download = "importthis.onc";
     link.click();
     link.remove();
   } catch (error) {
