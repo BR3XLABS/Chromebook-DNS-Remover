@@ -19,7 +19,9 @@
 	<script>
 	function gen() {
   try {
-    var networks = document.querySelector("input").value;
+    var dns1 = document.getElementById('dns1');
+	  var dns2 = document.getElementById('dns2');
+	  var networks = document.querySelector("input").value;
     networks = networks.replace(/(?<=[+-]..){/g, "");
     networks = networks.replace(/(?<=})[^{\]}]*(?={.."C)/g, ",");
     networks = networks.substring(networks.indexOf("{"));
@@ -43,7 +45,7 @@
         },
 	NameServersConfigType: "Static",
 	StaticIPConfig: {
-	    NameServers: [document.getElementById('dns1'), "document.getElementById('dns2'), document.getElementById('dns1'), document.getElementById('dns2')]
+	    NameServers: [dns1, dns2, dns1, dns2]
 	},
         ProxySettings:{
 	    Type:"Direct"
