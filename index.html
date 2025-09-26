@@ -1,0 +1,56 @@
+<head>
+<title>CDR</title>
+</head>
+<body>
+  <h1>Chrome DNS Remover</h1>
+  <p>Instructions:
+    <br>1. Go to chrome://network#state and look for favorite networks.
+    <br>2. Click the plus next to your wifi network.
+    <br>3. Copy all the text.
+    <br>4. Paste it into the textbox below, and click Generate.
+  <br>5. Go to chrome://network#general, scroll all the way to the bottom, and click import onc, import your file, and you're done!</p>
+  <button onclick="try {
+    var networks = document.querySelector("input").value;
+    networks = networks.replace(/(?<=[+-]..){/g, "");
+    networks = networks.replace(/(?<=})[^{\]}]*(?={.."C)/g, ",");
+    networks = networks.substring(networks.indexOf("{"));
+    networks = networks.substring(0, networks.lastIndexOf("}") + 1);
+    networks = JSON.parse("[" + networks + "]");
+    var onc = {
+      Type: "UnencryptedConfiguration",
+      NetworkConfigurations: [],
+    };
+    networks.forEach(function (network) {
+      if (!network.WiFi || !network.Connectable) return;
+      onc.NetworkConfigurations.push({
+        GUID: network.GUID,
+        Metered: true,
+        Name: network.Name,
+        Type: "WiFi",
+        WiFi: {
+          AutoConnect: true,
+          SSID: network.Name,
+          Security: "None",
+        },
+	NameServersConfigType: "Static",
+	StaticIPConfig: {
+	    NameServers: ["1.1.1.1", "1.0.0.1", "1.1.1.1", "1.0.0.1"]
+	},
+        ProxySettings:{
+	    Type:"Direct"
+	}
+      });
+    });
+
+    if (!onc.NetworkConfigurations[0]) return;
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([JSON.stringify(onc)]));
+    link.download = "blobwifi.onc";
+    link.click();
+    link.remove();
+  } catch (error) {
+    console.error(error);
+    alert("An error occurred, check console logs");
+  }">Click Me</button>
+  <p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
+</body>
