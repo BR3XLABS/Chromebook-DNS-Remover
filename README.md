@@ -1,5 +1,5 @@
 # CDR
-Instructions:  
+**Instructions:**  
 1\. Go to chrome://network#state and look for favorite networks.  
 2\. Click the plus next to your wifi network.  
 3\. Copy all the text.  
