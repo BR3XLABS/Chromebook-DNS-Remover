@@ -2,15 +2,17 @@
 <title>CDR</title>
 </head>
 <body>
-  <h1>Chrome DNS Remover</h1>
+  <h1>Chrome DNS Remover/Changer</h1>
   <p>Instructions:
     <br>1. Go to chrome://network#state and look for favorite networks.
     <br>2. Click the plus next to your wifi network.
     <br>3. Copy all the text.
-    <br>4. Paste it into the textbox below, and click Generate.
+    <br>4. Paste it into the textbox below, add the dns you want in the inputs, and click Generate.
   <br>5. Go to chrome://network#general, scroll all the way to the bottom, and click import onc, import your file, and you're done!</p>
   <div class="button-container">
-	<input placeholder="Paste copied text here">
+	<input id="dns1" placeholder="DNS 1">
+	  <input id="dns2" placeholder="DNS 2">
+	  <input placeholder="Paste copied text here">
 	<button onclick="gen()">Generate</button>
 		</div>
 	<p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
@@ -41,7 +43,7 @@
         },
 	NameServersConfigType: "Static",
 	StaticIPConfig: {
-	    NameServers: ["1.1.1.1", "1.0.0.1", "1.1.1.1", "1.0.0.1"]
+	    NameServers: [document.getElementById('dns1'), "document.getElementById('dns2'), document.getElementById('dns1'), document.getElementById('dns2')]
 	},
         ProxySettings:{
 	    Type:"Direct"
