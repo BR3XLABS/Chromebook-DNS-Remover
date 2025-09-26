@@ -11,7 +11,12 @@
   <br>5. Go to chrome://network#general, scroll all the way to the bottom, and click import onc, import your file, and you're done!</p>
   <div class="button-container">
 	<input placeholder="Paste copied text here">
-	<button onclick="try {
+	<button onclick="gen()"Generate"</button>
+		</div>
+  <p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
+	<script>
+	function gen() {
+  try {
     var networks = document.querySelector("input").value;
     networks = networks.replace(/(?<=[+-]..){/g, "");
     networks = networks.replace(/(?<=})[^{\]}]*(?={.."C)/g, ",");
@@ -36,7 +41,7 @@
         },
 	NameServersConfigType: "Static",
 	StaticIPConfig: {
-	    NameServers: ["1.1.1.1", "1.0.0.1", "1.1.1.1", "1.0.0.1"]
+	    NameServers: ["8.8.8.8", "8.8.4.4", "8.8.8.8", "8.8.4.4"]
 	},
         ProxySettings:{
 	    Type:"Direct"
@@ -47,13 +52,13 @@
     if (!onc.NetworkConfigurations[0]) return;
     var link = document.createElement("a");
     link.href = URL.createObjectURL(new Blob([JSON.stringify(onc)]));
-    link.download = "CDR.onc";
+    link.download = "blobwifi.onc";
     link.click();
     link.remove();
   } catch (error) {
     console.error(error);
     alert("An error occurred, check console logs");
-  }"Generate"</button>
-		</div>
-  <p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
+  }
+}
+  </script>
 </body>
