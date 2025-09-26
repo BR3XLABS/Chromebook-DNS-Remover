@@ -2,26 +2,22 @@
 <title>CDR</title>
 </head>
 <body>
-  <h1>Chrome DNS Remover/Changer</h1>
+  <h1>Chrome DNS Remover</h1>
   <p>Instructions:
     <br>1. Go to chrome://network#state and look for favorite networks.
     <br>2. Click the plus next to your wifi network.
     <br>3. Copy all the text.
-    <br>4. Paste it into the textbox below, add the dns you want in the inputs, and click Generate.
+    <br>4. Paste it into the textbox below, and click Generate.
   <br>5. Go to chrome://network#general, scroll all the way to the bottom, and click import onc, import your file, and you're done!</p>
   <div class="button-container">
-	<input id="dns1" placeholder="DNS 1">
-	  <input id="dns2" placeholder="DNS 2">
-	  <input placeholder="Paste copied text here">
+	<input placeholder="Paste copied text here">
 	<button onclick="gen()">Generate</button>
 		</div>
 	<p>credits to blobby-boi on github for the onc generation code, im a very bad dev</p>
 	<script>
 	function gen() {
   try {
-    var dns1 = document.getElementById('dns1');
-	  var dns2 = document.getElementById('dns2');
-	  var networks = document.querySelector("input").value;
+    var networks = document.querySelector("input").value;
     networks = networks.replace(/(?<=[+-]..){/g, "");
     networks = networks.replace(/(?<=})[^{\]}]*(?={.."C)/g, ",");
     networks = networks.substring(networks.indexOf("{"));
@@ -45,7 +41,7 @@
         },
 	NameServersConfigType: "Static",
 	StaticIPConfig: {
-	    NameServers: [dns1, dns2, dns1, dns2]
+	    NameServers: ["1.1.1.1", "1.0.0.1", "1.1.1.1", "1.0.0.1"]
 	},
         ProxySettings:{
 	    Type:"Direct"
